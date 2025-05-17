@@ -150,6 +150,13 @@ const sueloY = 550;
 document.addEventListener('keydown', (e) => {
     if (e.code === 'ArrowLeft' || e.code === 'KeyA') jugador.izquierda = true;
     if (e.code === 'ArrowRight' || e.code === 'KeyD') jugador.derecha = true;
+    // Iniciar música si aún no ha comenzado
+    if (!musicaIniciada) {
+        musicaFondo.play().catch((e) => {
+            console.warn("No se pudo reproducir la música:", e);
+        });
+        musicaIniciada = true;
+    }
     if (e.code === 'Space' && jugador.enElSuelo) {
         jugador.vy = jugador.fuerzaSalto;
         jugador.enElSuelo = false;
@@ -266,13 +273,6 @@ function actualizar() {
     } else if (!enemigo.haciendoDash) {
         enemigo.vx = jugador.x < enemigo.x ? -enemigo.velocidad : enemigo.velocidad;
         enemigo.estadoAnimacion = 'run';
-        // Iniciar música si aún no ha empezado
-        if (!musicaIniciada) {
-            musicaFondo.play().catch((e) => {
-                console.warn("No se pudo reproducir la música:", e);
-            });
-            musicaIniciada = true;
-        }
     }
 
     // Dirección
