@@ -8,8 +8,10 @@ imagenIdle.src = 'img/hornet/IDLE-HK.png';
 const imagenRun = new Image();
 imagenRun.src = 'img/hornet/run.png';
 
-const musicaFondo = document.getElementById('bgMusic');
-musicaFondo.volume = 0.7;
+const musicaFondo = new Audio('audio/menu.mp3');
+musicaFondo.loop = true;
+musicaFondo.volume = 0.5;
+let musicaIniciada = false;
 
 // Animaciones con frameInterval individual
 const animaciones = {
@@ -264,6 +266,13 @@ function actualizar() {
     } else if (!enemigo.haciendoDash) {
         enemigo.vx = jugador.x < enemigo.x ? -enemigo.velocidad : enemigo.velocidad;
         enemigo.estadoAnimacion = 'run';
+        // Iniciar música si aún no ha empezado
+        if (!musicaIniciada) {
+            musicaFondo.play().catch((e) => {
+                console.warn("No se pudo reproducir la música:", e);
+            });
+            musicaIniciada = true;
+        }
     }
 
     // Dirección
