@@ -1,0 +1,35 @@
+/* Reseteo básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Contenedor escalable */
+#canvas-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ canvas {
+    background-image: url('img/fondo.png');
+    background-size: 100% 100%;         /* Se adapta al tamaño exacto del canvas */
+    background-position: center center; /* Opcional, centra la imagen */
+    background-repeat: no-repeat;       /* No se repite */
+    display: block;
+    margin: 0 auto;
+}
